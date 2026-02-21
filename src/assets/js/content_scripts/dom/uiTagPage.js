@@ -1,6 +1,6 @@
 import { $ } from '../../helpers';
 import { displayLoaderWithMessage, createDOMTagCell } from './uiFooterTagsInRepo';
-import { getTagIcon, getPlusIcon, getStarIcon, getJsonIcon } from './uiSvgIcons';
+import { getTagIcon, getPlusIcon, getStarIcon, getJsonIcon, getGearIcon } from './uiSvgIcons';
 import { StoredReposMngr } from '../storageSync/StoredReposMngr';
 import { StoredTagsMngr } from '../storageSync/StoredTagsMngr';
 import ghColors from './gh-language-colors.json';
@@ -53,7 +53,12 @@ export async function sidebarListTags(isFull = false) {
 
   let sidebarContent = `
     <div class="col-3 float-left pr-3 ghstarsmngr-sidebar">
-      <p class="ghstarsmngr-sidebar-title">Tags </p>
+      <div class="ghstarsmngr-sidebar-header">
+        <p class="ghstarsmngr-sidebar-title">Tags</p>
+        <button class="ghstarmngr-settings-bt" title="Settings">
+          ${getGearIcon({ width: 16, height: 16 })}
+        </button>
+      </div>
       <ul class="ghstarsmngr-sidebar-tag-list">`;
 
   tagsAndRelatedRepos.map((tagAndRepos) => sidebarContent += createTagInSidebar(tagAndRepos));

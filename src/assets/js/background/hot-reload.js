@@ -161,10 +161,13 @@ function watchChanges(packageDirectoryEntry, lastTimestamp) {
 
 // chrome.management.getSelf() Returns the extension details from manifest.json,
 // including installType property if you are developing
+// Note: getPackageDirectoryEntry is not available in MV3 service workers
 chrome.management.getSelf((self) => {
   if (self.installType === 'development') {
-    chrome.runtime.getPackageDirectoryEntry((packageDirectoryEntry) => {
-      return watchChanges(packageDirectoryEntry);
-    });
+    if (typeof chrome.runtime.getPackageDirectoryEntry === 'function') {
+      chrome.runtime.getPackageDirectoryEntry((packageDirectoryEntry) => {
+        return watchChanges(packageDirectoryEntry);
+      });
+    }
   }
 });

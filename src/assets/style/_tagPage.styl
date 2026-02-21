@@ -2,6 +2,34 @@
   .ghstarsmngr-sidebar
     margin-top: 5px
 
+  .ghstarsmngr-sidebar-header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 10px
+
+  .ghstarsmngr-sidebar-title
+    margin: 0
+    font-size: 14px
+    font-weight: bold
+    color: $darkGrey
+
+  .ghstarmngr-settings-bt
+    background: transparent
+    border: none
+    padding: 4px
+    cursor: pointer
+    color: $mediumGrey
+    transition: color .3s
+    display: inline-block
+
+    &:hover
+      color: $darkGrey
+
+    svg
+      display: block
+      fill: currentColor
+
   .js-repo-filter,
   .user-profile-repo-filter
     .ghstarsmngr-tag-page-loader

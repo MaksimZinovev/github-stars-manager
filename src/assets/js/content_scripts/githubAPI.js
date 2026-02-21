@@ -1,5 +1,7 @@
 import {GH} from '../constants';
 import * as axios from 'axios';
+import {StarredReposCacheMngr} from './storageSync/StarredReposCacheMngr';
+import {SettingsMngr} from './storageSync/SettingsMngr';
 
 // repoIDByName = 'https://api.github.com/repos/[USER]/[REPO]';
 // repoAPIByID = 'https://api.github.com/repositories/[ID]';
@@ -45,6 +47,14 @@ export async function getUserDetails(accessToken) {
  * @return {Array} userDetails
  */
 export async function getUserStarredRepos(accessToken) {
+  const settings = await SettingsMngr.getSettings();
+  const cache = await StarredReposCacheMngr.getCache();
+
+  if (cache && cache.repos && cache.timestamp &&
+      (cache.timestamp + settings.cacheDurationMs) > Date.now()) {
+    return cache.repos;
+  }
+
   const apiStarredRepos = `${GH.API}user/starred?per_page=100`;
 
   let page = 1;
@@ -62,5 +72,7 @@ export async function getUserStarredRepos(accessToken) {
     }
     page++;
   } while (data.length);
+
+  await StarredReposCacheMngr.setCache(allStars);
   return allStars;
 }

@@ -25,3 +25,9 @@ export const modalFeedbackMessage = (tag) => {
 export const HASH = {
   HOME: '#starsmngr',
 };
+
+export const DEFAULT_CACHE_DURATION_MS = 3600000; // 1 hour in milliseconds
+
+export const CACHE_STORAGE_KEY = 'cachedStarredRepos';
+
+export const SETTINGS_STORAGE_KEY = 'settings';
