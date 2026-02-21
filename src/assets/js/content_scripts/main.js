@@ -1,6 +1,5 @@
 import { $ } from '../helpers';
 import { HASH } from '../constants';
-import KEYS from '../keys';
 import '../../style/main.styl';
 import { initStorage, getAccessTokenFromStorage } from './storageSync/initStorageSync';
 import { StoredGenericMngr } from './storageSync/StoredGenericMngr';
@@ -125,9 +124,82 @@ function isUserHome(userDetails) {
 }
 
 /**
+ * Show modal to input Personal Access Token
+ */
+function showPATModal() {
+  const existingModal = document.getElementById('ghstarmngr-pat-modal');
+  if (existingModal) existingModal.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'ghstarmngr-pat-modal';
+  const overlayStyle = 'position:fixed;top:0;left:0;right:0;bottom:0;' +
+    'background:rgba(0,0,0,0.7);z-index:999999;display:flex;' +
+    'align-items:center;justify-content:center;';
+  const boxStyle = 'background:#0d1117;border:1px solid #30363d;' +
+    'border-radius:8px;padding:24px;max-width:480px;width:90%;color:#c9d1d9;';
+  const inputStyle = 'width:100%;padding:10px 12px;border:1px solid #30363d;' +
+    'border-radius:6px;background:#161b22;color:#c9d1d9;font-size:14px;' +
+    'box-sizing:border-box;margin-bottom:16px;';
+  const btnStyle = 'background:#238636;color:#fff;border:none;' +
+    'padding:8px 16px;border-radius:6px;font-size:14px;cursor:pointer;';
+  const linkStyle = 'color:#58a6ff;font-size:14px;text-decoration:none;';
+  const flexStyle = 'display:flex;gap:12px;justify-content:flex-end;' +
+    'align-items:center;';
+
+  modal.innerHTML = `
+    <div style="${overlayStyle}">
+      <div style="${boxStyle}">
+        <h2 style="margin:0 0 12px 0;color:#f0f6fc;font-size:20px;">
+          GitHub Stars Manager
+        </h2>
+        <p style="margin:0 0 16px 0;color:#8b949e;font-size:14px;">
+          Enter your GitHub Personal Access Token.
+        </p>
+        <input type="text" id="ghstarmngr-pat-input"
+          placeholder="github_pat_xxxx..." style="${inputStyle}">
+        <div style="${flexStyle}">
+          <a href="https://github.com/settings/tokens?type=beta" target="_blank"
+            style="${linkStyle}">Create Token</a>
+          <button id="ghstarmngr-pat-save" style="${btnStyle}">Save</button>
+        </div>
+        <p id="ghstarmngr-pat-error"
+          style="color:#f85149;font-size:12px;margin:12px 0 0 0;display:none;">
+        </p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const input = document.getElementById('ghstarmngr-pat-input');
+  const saveBtn = document.getElementById('ghstarmngr-pat-save');
+  const errorEl = document.getElementById('ghstarmngr-pat-error');
+
+  saveBtn.addEventListener('click', async () => {
+    const pat = input.value.trim();
+    if (!pat) {
+      errorEl.textContent = 'Please enter a token';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    try {
+      const testResponse = await fetch(`https://api.github.com/user?access_token=${pat}`);
+      if (!testResponse.ok) {
+        throw new Error('Invalid token');
+      }
+      await StoredGenericMngr.createOrUpdate('token', pat);
+      modal.remove();
+      window.location.reload();
+    } catch (error) {
+      errorEl.textContent = 'Invalid token. Please check and try again.';
+      errorEl.style.display = 'block';
+    }
+  });
+}
+
+/**
  * Save token if there is a 'code=' query parameter in URL
- * If there is no token, and no code query param, send a message to background
- * script to open a new tab
+ * If there is no token, show PAT input modal
  */
 export async function checkCodeParamAndSaveToken() {
   if (getCodeFromURL(location.href)) {
@@ -138,10 +210,6 @@ export async function checkCodeParamAndSaveToken() {
     await StoredGenericMngr.createOrUpdate('token', accessToken);
     window.location.href = 'https://github.com/';
   } else if (window.location.href.indexOf('https://github.com/login/oauth/authorize') === -1) {
-    const scope = 'user:email,repo';
-    const ghPrefix = 'https://github.com';
-    const ghAuthPrefix = `${ghPrefix}/login/oauth/authorize`;
-    const ghAuth = `${ghAuthPrefix}?client_id=${KEYS.ID}&redirect_uri=${ghPrefix}/&scope=${scope}`;
-    window.location.href = ghAuth;
+    showPATModal();
   }
 }

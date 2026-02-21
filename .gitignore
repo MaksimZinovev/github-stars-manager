@@ -27,3 +27,5 @@ build
 /keyrings/live/pubring.kbx~
 /keyrings/live/secring.gpg
 /src/assets/js/keys.js
+.env
+.claude/settings.local.json

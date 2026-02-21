@@ -11,7 +11,7 @@ You can download the extension [here](https://chrome.google.com/webstore/detail/
 ![Github Stars Manager](./howtouse.jpg)
 
 ✨ Now you can also manage your tags inside the custom tag page ✨ 
-
+GITHUB-STARS-MANAGER
 
 ### Storage
 
