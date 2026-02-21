@@ -337,8 +337,12 @@ export function exportTagsBts() {
  * Hide all existing starred repos to enter on the Tag page
  */
 export function hideStarredRepos() {
-  $('.TableObject.border-bottom.border-gray-dark.py-3').classList.add('ghstarsmngr-hide');
-  $('.paginate-container').classList.add('ghstarsmngr-hide');
+  const tableObj = $('.TableObject.border-bottom.border-gray-dark.py-3');
+  const paginateContainer = $('.paginate-container');
+
+  if (tableObj) tableObj.classList.add('ghstarsmngr-hide');
+  if (paginateContainer) paginateContainer.classList.add('ghstarsmngr-hide');
+
   document.querySelectorAll('.d-block.width-full.py-4').forEach((div) => {
     div.classList.add('ghstarsmngr-hide');
   });
@@ -348,11 +352,16 @@ export function hideStarredRepos() {
  * Show again all starred repos when leave the Tag page
  */
 export function showStarredRepos() {
-  if ($('.paginate-container')) {
-    $('.paginate-container').classList.remove('ghstarsmngr-hide');
-    $('.user-profile-repo-filter').classList.remove('ghstarsmngr-hide');
-    document.querySelectorAll('.d-block.width-full.py-4').forEach((div) => {
-      div.classList.remove('ghstarsmngr-hide');
-    });
+  const paginateContainer = $('.paginate-container');
+  const repoFilter = $('.user-profile-repo-filter');
+
+  if (paginateContainer) {
+    paginateContainer.classList.remove('ghstarsmngr-hide');
   }
+  if (repoFilter) {
+    repoFilter.classList.remove('ghstarsmngr-hide');
+  }
+  document.querySelectorAll('.d-block.width-full.py-4').forEach((div) => {
+    div.classList.remove('ghstarsmngr-hide');
+  });
 }

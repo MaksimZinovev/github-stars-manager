@@ -16,8 +16,6 @@ import { initDOM } from './dom/initDom';
 import {
   getUserDetails,
   getUserStarredRepos,
-  getAccessToken,
-  getCodeFromURL,
 } from './githubAPI';
 
 init();
@@ -203,18 +201,8 @@ function showPATModal() {
 }
 
 /**
- * Save token if there is a 'code=' query parameter in URL
- * If there is no token, show PAT input modal
+ * Show PAT input modal if no token is stored
  */
 export async function checkCodeParamAndSaveToken() {
-  if (getCodeFromURL(location.href)) {
-    let url = await getAccessToken(getCodeFromURL(location.href));
-    let begin = url.data.indexOf('=') + 1;
-    let end = url.data.indexOf('&');
-    let accessToken = url.data.slice(begin, end);
-    await StoredGenericMngr.createOrUpdate('token', accessToken);
-    window.location.href = 'https://github.com/';
-  } else if (window.location.href.indexOf('https://github.com/login/oauth/authorize') === -1) {
-    showPATModal();
-  }
+  showPATModal();
 }

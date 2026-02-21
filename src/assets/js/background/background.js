@@ -2,12 +2,13 @@ import {upperCaseFirst} from '../helpers';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.createJson) {
+    // MV3: Use chrome.tabs.create instead of window.open
     let jsonTags = JSON.stringify(request.createJson, null, 2);
-    let newTab = window.open();
-    newTab.document.open();
-    newTab.document.write(`<html><body><pre>${jsonTags}</pre></body></html>`);
-    newTab.document.close();
+    let dataUrl = 'data:text/html;charset=utf-8,' +
+      encodeURIComponent(`<html><body><pre>${jsonTags}</pre></body></html>`);
+    chrome.tabs.create({url: dataUrl});
     sendResponse({jsonCreated: 'JSON created successfully!'});
+    return false;
   } else if (request.createBookmark) {
     chrome.bookmarks.create({
       'parentId': '1',
@@ -24,13 +25,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             let repoDesc = tagAndRelatedRepo.description;
             chrome.bookmarks.create({
               'parentId': newChildFolder.id,
-              'title': `${tagAndRelatedRepo.name} ${repoDesc ? `| ${repoDesc }` : ''}`,
+              'title': `${tagAndRelatedRepo.name} ${repoDesc ? `| ${repoDesc}` : ''}`,
               'url': tagAndRelatedRepo.html_url,
             });
           });
         });
       });
+      sendResponse({bookmarkCreated: 'Bookmarks created successfully!'});
     });
+    return true; // Keep channel open for async response
   }
-  sendResponse({bookmarkCreated: 'Bookmarks created successfully!'});
+  return false;
 });
