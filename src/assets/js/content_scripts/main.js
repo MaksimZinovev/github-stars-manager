@@ -53,7 +53,9 @@ export async function createTagsInStarsPage() {
   }
   addHeaderTagMenu();
   let headerTagLink = document.querySelector('.ghstarmngr-tag-header-link');
-  headerTagLink.setAttribute('href', `${userDetails.data.html_url}?tab=stars${HASH.HOME}`);
+  if (headerTagLink) {
+    headerTagLink.setAttribute('href', `${userDetails.data.html_url}?tab=stars${HASH.HOME}`);
+  }
 
   if (isUserHome(userDetails) || isUserInStars()) {
     insertLoader('Loading tags...');
@@ -83,13 +85,14 @@ function intervalToCheckURL(starredRepos, reposInStorage, tagsInStorage) {
   let cachedLocationSearch;
   let intervalToCheckIfURLChanges = 500;
   setIntervalToCheckURL = setInterval(function() {
+    let headerLink = $('.ghstarmngr-tag-header-link');
     if (window.location.hash.indexOf(HASH.HOME) > -1) {
-      $('.ghstarmngr-tag-header-link').classList.add('active-menu-header');
+      if (headerLink) headerLink.classList.add('active-menu-header');
       document.querySelectorAll('.underline-nav-item').forEach((navItem) => {
         navItem.classList.remove('selected');
       });
     } else {
-      $('.ghstarmngr-tag-header-link').classList.remove('active-menu-header');
+      if (headerLink) headerLink.classList.remove('active-menu-header');
     }
     if (location.search.indexOf('tab=stars') > -1) {
       let changedTabsInStar = location.search !== cachedLocationSearch;
@@ -183,7 +186,9 @@ function showPATModal() {
     }
 
     try {
-      const testResponse = await fetch(`https://api.github.com/user?access_token=${pat}`);
+      const testResponse = await fetch('https://api.github.com/user', {
+        headers: {'Authorization': `Bearer ${pat}`},
+      });
       if (!testResponse.ok) {
         throw new Error('Invalid token');
       }

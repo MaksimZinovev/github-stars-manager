@@ -1,9 +1,9 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Github Stars Manager",
   "description": "This extension allows you to manage your Github stars with tags and create categorized bookmark folder with the tags you created.",
   "version": "1.7",
-  "browser_action": {
+  "action": {
     "default_icon": "src/assets/images/icons/icon.png"
   },
   "icons": {
@@ -19,14 +19,11 @@
     "storage"
   ],
   "background": {
-    "scripts": [
-      "dist/background.js"
-    ]
+    "service_worker": "dist/background.js"
   },
   "content_scripts": [
     {
       "matches": [
-        "http://github.com/*",
         "https://github.com/*"
       ],
       "js": [

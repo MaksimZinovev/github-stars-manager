@@ -19,24 +19,19 @@ export async function deleteTag(tag) {
  * @param {String} message Messaage to appear next to loading icon
  */
 export function insertLoader(message) {
-  const repoList = getContainerDivRepo();
-  if (repoList) {
-    const repoListItems = repoList.querySelectorAll(
-      '.d-block.width-full.py-4:not(.ghstarsmngr-hide)'
-    );
+  const repoListItems = getRepoItems();
 
-    repoListItems.forEach((repo) => {
-      if (repo.querySelector('.ghstarmngr-repo-footer-tags')) {
-        repo.querySelector('.ghstarmngr-repo-footer-tags').remove();
-      }
-      repo.innerHTML += `
+  repoListItems.forEach((repo) => {
+    if (repo.querySelector('.ghstarmngr-repo-footer-tags')) {
+      repo.querySelector('.ghstarmngr-repo-footer-tags').remove();
+    }
+    repo.innerHTML += `
       <div class="ghstarmngr-loading-spinner-container">
       <div class="ghstarmngr-loading-spinner">
       </div>
       ${message}
       </div>`;
-    });
-  }
+  });
 }
 
 /**
@@ -82,20 +77,14 @@ export function resetFeedbackMessage(delay = 0) {
  * Removes loading spinner
  */
 export function removeLoader() {
-  const repoList = getContainerDivRepo();
+  const repoListItems = getRepoItems();
 
-  if (repoList) {
-    const repoListItems = repoList.querySelectorAll(
-      '.d-block.width-full.py-4:not(.ghstarsmngr-hide)'
-    );
-
-    repoListItems.forEach((repo) => {
-      let loadingSpinnerContainer = repo.querySelector('.ghstarmngr-loading-spinner-container');
-      if (loadingSpinnerContainer) {
-        repo.removeChild(loadingSpinnerContainer);
-      }
-    });
-  }
+  repoListItems.forEach((repo) => {
+    let loadingSpinnerContainer = repo.querySelector('.ghstarmngr-loading-spinner-container');
+    if (loadingSpinnerContainer) {
+      repo.removeChild(loadingSpinnerContainer);
+    }
+  });
 }
 
 /**
@@ -132,7 +121,8 @@ export function insertBtCreateTag(starredRepos) {
  * @param {Object} tagsInStorage
  */
 export function insertFooterTags(starredRepos, reposInStorage, tagsInStorage) {
-  if ($('.d-block.width-full.py-4:not(.ghstarsmngr-hide) .ghstarmngr-repo-footer-tags')) {
+  const items = getRepoItems();
+  if (items.length > 0 && items[0].querySelector('.ghstarmngr-repo-footer-tags')) {
     return;
   }
 
@@ -199,22 +189,23 @@ export function createDOMTagCell(repoID, tagName) {
  * @param {Function} callback
  */
 function loopThroughRepos(callback) {
-  const repoList = getContainerDivRepo();
+  const repoListItems = getRepoItems();
 
-  if (repoList) {
-    const repoListItems = repoList.querySelectorAll(
-      '.d-block.width-full.py-4:not(.ghstarsmngr-hide)'
-    );
+  repoListItems.forEach((repo) => {
+    // Find repo link - try multiple selectors
+    let repoLink = repo.querySelector('a[href^="/"][href*="/"]:not([href*="?"])');
+    if (!repoLink) {
+      repoLink = repo.querySelector('.d-inline-block a');
+    }
+    if (!repoLink) {
+      repoLink = repo.querySelector('a[itemprop="name"]');
+    }
 
-    repoListItems.forEach((repo) => {
-      let repoRef = repo
-        .querySelector('.d-inline-block a')
-        .getAttribute('href')
-        .replace('/', '');
-
+    if (repoLink) {
+      let repoRef = repoLink.getAttribute('href').replace(/^\//, '');
       callback(repo, repoRef);
-    });
-  }
+    }
+  });
 }
 
 /**
@@ -224,8 +215,21 @@ function loopThroughRepos(callback) {
 function getContainerDivRepo() {
   return (
     $('.ghstarsmngr-repo-list') ||
-    $('.js-repo-filter') ||
-    $('.repo-list') ||
-    $('.user-profile-repo-filter')
-  ); // eslint-disable-line
+    $('.Layout-main') ||
+    $('turbo-frame')
+  );
+}
+
+/**
+ * Get repo item elements (GitHub 2024+ structure)
+ * @return {NodeList}
+ */
+function getRepoItems() {
+  // New GitHub UI uses these classes for repo items
+  const container = getContainerDivRepo();
+  if (!container) return [];
+
+  return container.querySelectorAll(
+    '.col-12.d-block.width-full.py-4, .d-block.width-full.py-4'
+  );
 }

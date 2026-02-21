@@ -9,7 +9,6 @@ module.exports = {
     background: [
       'babel-polyfill',
       './src/assets/js/background/background.js',
-      './src/assets/js/background/hot-reload.js',
     ],
     content_script: [
       'babel-polyfill',

@@ -1,11 +1,4 @@
 import {upperCaseFirst} from '../helpers';
-import KEYS from '../keys';
-
-chrome.management.getSelf((self) => {
-  if (self.installType !== 'development') {
-    chrome.runtime.onInstalled.addListener(createAuthorizeTab);
-  }
-});
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.createJson) {
@@ -41,14 +34,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
   sendResponse({bookmarkCreated: 'Bookmarks created successfully!'});
 });
-
-/**
- * Create an authorization tab
- */
-function createAuthorizeTab() {
-  const scope = 'user:email,repo';
-  const ghPrefix = 'https://github.com';
-  const ghAuthPrefix = `${ghPrefix}/login/oauth/authorize`;
-  const ghAuth = `${ghAuthPrefix}?client_id=${KEYS.ID}&redirect_uri=${ghPrefix}/&scope=${scope}`;
-  chrome.tabs.create({url: ghAuth});
-}
