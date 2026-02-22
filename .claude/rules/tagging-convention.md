@@ -2,9 +2,10 @@
 
 ## Rules
 
-- **Max 2 tags per repo** - keep it simple
+- **Max 2-3 tags per repo** - keep it simple
 - **Style**: Simple lowercase (e.g., `security`, `devops`)
 - **Primary focus**: Domain/use-case only (no language tags)
+- **CLI exception**: Add `cli` as 3rd tag when tool has significant CLI interface
 
 ## Decision Tree
 
@@ -85,6 +86,13 @@
 └─ Skip if primary tag is enough
 ```
 
+```
+┌─ THIRD tag (optional, CLI only)
+│
+├─ CLI interface       → cli
+└─ Only when tool is primarily CLI-based (e.g., claude-code, ripgrep)
+```
+
 ## Domain Tags Reference
 
 | Tag | Count | Use for |
@@ -120,9 +128,13 @@
 
 ## Examples
 
-| Repo | Tag 1 | Tag 2 | Reason |
-|------|-------|-------|--------|
-| sonar-findbugs | security | | Domain is enough |
+| Repo | Tag 1 | Tag 2 | Tag 3 | Reason |
+|------|-------|-------|-------|--------|
+| sonar-findbugs | security | | | Domain is enough |
+| claude-code | devtools | ai | cli | Dev tool + AI + CLI interface |
+| superpowers | ai | devtools | | AI framework for dev |
+| claude-code-telegram | ai | cli | | Telegram bot + CLI |
+| FossFLOW | viz | devtools | | Diagrams + dev tool |
 | playwright | testing | | Domain is enough |
 | awesome-mcp | awesome | mcp | Type + domain |
 | free-programming-books | free | learning | Cost + purpose |
@@ -141,7 +153,7 @@
 
 ## Anti-patterns
 
-- ❌ More than 2 tags
+- ❌ More than 3 tags
 - ❌ Language tags (`python`, `rust`, `javascript`)
 - ❌ Too specific (`react-hooks` → use `devtools`)
 - ❌ Redundant (`testing` + `test-examples` → pick one)

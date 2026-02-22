@@ -9,7 +9,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       return false;
     }
 
-    const methods = ['addTag', 'bulkTag', 'getTags', 'removeTag', 'listAllTags', 'getReposByTag'];
+    const methods = [
+      'addTag', 'bulkTag', 'getTags', 'removeTag',
+      'listAllTags', 'getReposByTag', 'fetchWithAuth',
+    ];
 
     chrome.scripting.executeScript({
       target: {tabId: tabId},

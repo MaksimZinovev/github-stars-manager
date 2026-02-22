@@ -2,6 +2,17 @@
 
 > ✅ **Tested 2026-02-22** - Direct storage operations via Chrome DevTools MCP
 
+## ⚠️ For Subagents
+
+**DO NOT launch a new browser.** Connect to existing Chrome debug instance via MCP:
+- Use `mcp__chrome-devtools__evaluate_script` to execute code
+- Verify `typeof window.debugAPI === "object"` before tagging
+- If undefined, ask user to load extension in `chrome://extensions/`
+
+For bulk tagging (50+ repos), see [bulk-tagging-workflow.md](bulk-tagging-workflow.md).
+
+---
+
 ## Quick Start
 
 ```javascript
@@ -123,17 +134,16 @@ The `window.debugAPI` must be injected into the **main world** for MCP to access
 | `removeTag(id, name)` | Remove tag from repo | `removeTag(123456789, 'devtools')` |
 | `listAllTags()` | List all stored tags | `listAllTags()` |
 | `getReposByTag(name)` | Find repos with tag | `getReposByTag('devtools')` |
+| `fetchWithAuth(url)` | Authenticated API fetch | `fetchWithAuth('https://api.github.com/repos/owner/repo')` |
 
 ### Finding Repo ID
 
 ```javascript
-// Method 1: GitHub API
-const response = await fetch('https://api.github.com/repos/owner/repo');
-const data = await response.json();
-console.log(data.id);
-
-// Method 2: One-liner
-fetch('https://api.github.com/repos/owner/repo').then(r => r.json()).then(d => console.log(d.id))
+// Use fetchWithAuth to avoid rate limiting
+const result = await window.debugAPI.fetchWithAuth(
+  'https://api.github.com/repos/owner/repo'
+);
+console.log(result.data.id);
 ```
 
 ## Troubleshooting

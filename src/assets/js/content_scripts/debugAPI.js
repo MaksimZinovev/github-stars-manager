@@ -145,6 +145,42 @@ const debugAPI = {
       return { success: false, message: error.message };
     }
   },
+
+  /**
+   * Fetch a URL with GitHub PAT authentication
+   * @param {String} url - URL to fetch (e.g., GitHub API endpoint)
+   * @param {Object} options - Optional fetch options (will merge with auth header)
+   * @return {Promise<Object>} Result with success status and data
+   */
+  async fetchWithAuth(url, options = {}) {
+    try {
+      const { token } = await chrome.storage.sync.get('token');
+
+      if (!token) {
+        return { success: false, error: 'No PAT configured. Enter token in extension.' };
+      }
+
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        ...options.headers,
+      };
+
+      const response = await fetch(url, { ...options, headers });
+
+      if (!response.ok) {
+        return {
+          success: false,
+          status: response.status,
+          error: `HTTP ${response.status}: ${response.statusText}`,
+        };
+      }
+
+      const data = await response.json();
+      return { success: true, status: response.status, data };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
 };
 
 // Expose to window for console access (both isolated world and main world)
