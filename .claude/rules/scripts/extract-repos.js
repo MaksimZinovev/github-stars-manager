@@ -1,28 +1,17 @@
 /**
- * ═══════════════════════════════════════════════════════════════
  * EXTRACT REPOS - Step 1 of 4
- * ═══════════════════════════════════════════════════════════════
  * Prerequisites: readiness-check.js passed
- * Purpose: Extract repo names from stars page
+ * Purpose: Fetch all starred repos via GitHub API
  * Execute: mcp__chrome-devtools__evaluate_script
- * ═══════════════════════════════════════════════════════════════
  */
 
 async () => {
   const output = {
-    ═══════════════════════════════════════════════════════════════
     HEADER: "EXTRACT REPOS RESULTS",
-    ═══════════════════════════════════════════════════════════════
 
     WHAT_WAS_EXECUTED: {
-      description: "Scanned page for GitHub repo links",
-      selectors_used: ["a[href^='https://github.com/']"],
-      filters_applied: [
-        "owner/repo format only",
-        "exclude user profiles",
-        "exclude sponsors pages",
-        "deduplicated"
-      ]
+      method: "GitHub API - GET /users/{username}/starred",
+      pagination: "100 per page, all pages fetched"
     },
 
     RESULTS: {
@@ -31,57 +20,50 @@ async () => {
     },
 
     ERRORS: [],
-
     NEXT_STEP: ""
   };
 
-  // ─────────────────────────────────────────────────────────────
-  // EXTRACTION LOGIC
-  // ─────────────────────────────────────────────────────────────
-  const rawRepos = [];
+  // Get username from current page
+  const username = window.location.pathname.split('/')[1];
+  if (!username) {
+    output.ERRORS.push({ type: "NO_USERNAME", message: "Cannot determine username from URL" });
+    output.NEXT_STEP = "BLOCKED: Navigate to your stars page first";
+    return output;
+  }
 
-  document.querySelectorAll('a[href^="https://github.com/"]').forEach(link => {
-    const href = link.getAttribute('href');
-    const repo = href.replace('https://github.com/', '');
+  // Fetch all starred repos via API
+  let allRepos = [];
+  let page = 1;
+  const perPage = 100;
 
-    // Filter criteria
-    const isValid =
-      repo.split('/').length === 2 &&     // Must be owner/repo
-      !repo.includes('?') &&               // No query params
-      !repo.includes('MaksimZinovev') &&   // Not user profile
-      !href.includes('/stars/') &&         // Not stars list
-      !href.includes('/sponsors/');        // Not sponsors
+  while (true) {
+    const result = await window.debugAPI.fetchWithAuth(
+      `https://api.github.com/users/${username}/starred?per_page=${perPage}&page=${page}`
+    );
 
-    if (isValid) {
-      rawRepos.push(repo);
+    if (!result.success) {
+      output.ERRORS.push({ type: "API_ERROR", message: result.error, page });
+      break;
     }
-  });
 
-  // Deduplicate
-  const uniqueRepos = [...new Set(rawRepos)];
+    const repos = result.data;
+    if (repos.length === 0) break;
 
-  // ─────────────────────────────────────────────────────────────
-  // POPULATE OUTPUT
-  // ─────────────────────────────────────────────────────────────
-  output.RESULTS.repos_found = uniqueRepos.length;
-  output.RESULTS.repos = uniqueRepos;
+    allRepos = allRepos.concat(repos.map(r => r.full_name));
 
-  if (uniqueRepos.length === 0) {
-    output.ERRORS.push({
-      type: "NO_REPOS_FOUND",
-      possible_causes: [
-        "Not on stars page",
-        "Page not fully loaded",
-        "Different page layout"
-      ],
-      suggested_fix: "Verify you're on github.com/<username>?tab=stars and page is loaded"
-    });
-    output.NEXT_STEP = "❌ BLOCKED: No repos found. See errors above.";
+    if (repos.length < perPage) break; // Last page
+    page++;
+  }
+
+  output.RESULTS.repos_found = allRepos.length;
+  output.RESULTS.repos = allRepos;
+
+  if (allRepos.length === 0) {
+    output.NEXT_STEP = "BLOCKED: No starred repos found";
   } else {
-    output.NEXT_STEP = `✅ SUCCESS: Copy repos array below, then run fetch-ids.js
+    output.NEXT_STEP = `SUCCESS: Found ${allRepos.length} repos. Run fetch-ids.js with:
 
-    // COPY THIS:
-    const REPO_LIST = ${JSON.stringify(uniqueRepos, null, 2)};`;
+    const REPO_LIST = ${JSON.stringify(allRepos.slice(0, 5), null, 2)}; // showing first 5`;
   }
 
   return output;
