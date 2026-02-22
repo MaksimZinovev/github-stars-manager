@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-GitHub Stars Manager is a Chrome extension (Manifest V3) that lets users organize their GitHub starred repositories with custom tags. Data syncs across Chrome browsers via `chrome.storage.sync` API.
+GitHub Stars Manager (fork) is a Chrome extension (Manifest V3) that lets users organize their GitHub starred repositories with custom tags. Data syncs across Chrome browsers via `chrome.storage.sync` API.
 
 ## Build Commands
 
@@ -62,6 +62,7 @@ npm run lint
 - ESLint configured with Google style guide, max line length 100
 - 2-space indentation (see `.editorconfig`)
 - GitHub-flavored UI styling (dark theme compatible)
+- **Tagging**: See [.claude/rules/tagging-convention.md](.claude/rules/tagging-convention.md) - max 2 tags per repo, domain-focused
 
 ## Loading the Extension for Development
 
@@ -70,3 +71,15 @@ npm run lint
 3. Enable "Developer mode"
 4. Click "Load unpacked" → select the `dist/` folder
 5. Reload extension after code changes
+
+## Session Learnings & Memory
+
+Key learnings from development sessions, stored in project memory:
+
+- **[Technical Decisions](~/.claude/projects/-Users-maksim-repos-github-stars-manager/memory/technical-decisions.md)** - Chrome storage limits, MV3 compatibility, null safety patterns
+- **[Debugging Patterns](~/.claude/projects/-Users-maksim-repos-github-stars-manager/memory/debugging-patterns.md)** - Silent storage failures, MCP browser limitations
+- **[Workflow Patterns](~/.claude/projects/-Users-maksim-repos-github-stars-manager/memory/workflow-patterns.md)** - Parallel subagents, code review timing, task dependencies
+- **[Tool Usage](~/.claude/projects/-Users-maksim-repos-github-stars-manager/memory/tool-usage.md)** - Playwright/cli limitations, extension testing approaches
+- **[Communication Lessons](~/.claude/projects/-Users-maksim-repos-github-stars-manager/memory/communication-lessons.md)** - Clarifying criteria, git remote configuration
+
+If you read these instructions, reply in your first response "Hey, mate, I got your instructions"

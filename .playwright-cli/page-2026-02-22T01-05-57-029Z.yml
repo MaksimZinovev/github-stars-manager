@@ -1,0 +1,486 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region
+    - generic [ref=e3]:
+      - link "Skip to content" [ref=e4] [cursor=pointer]:
+        - /url: "#start-of-content"
+      - banner "Global Navigation Menu" [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e10]:
+            - button "Open menu" [ref=e12] [cursor=pointer]:
+              - img [ref=e13]
+            - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+              - /url: /
+              - img [ref=e16]
+          - generic [ref=e18]:
+            - navigation "Breadcrumbs" [ref=e19]:
+              - list [ref=e20]:
+                - listitem [ref=e21]:
+                  - link "MaksimZinovev" [ref=e22] [cursor=pointer]:
+                    - /url: /MaksimZinovev
+                    - generic [ref=e23]: MaksimZinovev
+            - generic "Search or jump to…" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27]:
+                - generic:
+                  - img
+                - generic [ref=e28]:
+                  - generic:
+                    - text: Type
+                    - generic: /
+                    - text: to search
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e32]:
+                - link "Chat with Copilot" [ref=e34] [cursor=pointer]:
+                  - /url: /copilot
+                  - img [ref=e35]
+                - button "Open agents panel" [ref=e39] [cursor=pointer]:
+                  - generic [ref=e40]:
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+              - button "Create new..." [ref=e42] [cursor=pointer]:
+                - generic [ref=e43]:
+                  - generic:
+                    - img
+                - generic:
+                  - img
+              - link "Issues (g then i)" [ref=e44] [cursor=pointer]:
+                - /url: /issues
+                - img [ref=e45]
+              - link "Pull requests (g then p)" [ref=e48] [cursor=pointer]:
+                - /url: /pulls
+                - img [ref=e49]
+              - link "Repositories" [ref=e51] [cursor=pointer]:
+                - /url: /repos
+                - img [ref=e52]
+            - link "You have unread notifications (g then n)" [ref=e54] [cursor=pointer]:
+              - /url: /notifications
+              - img [ref=e55]
+            - button "Open user navigation menu" [ref=e58] [cursor=pointer]:
+              - img "Maksim Zinovev" [ref=e59]
+        - heading "User navigation" [level=2] [ref=e60]
+        - navigation "User" [ref=e61]:
+          - list [ref=e62]:
+            - listitem [ref=e63]:
+              - link "Overview" [ref=e64] [cursor=pointer]:
+                - /url: /MaksimZinovev
+                - img [ref=e66]
+                - generic [ref=e68]: Overview
+            - listitem [ref=e69]:
+              - link "Repositories (59)" [ref=e70] [cursor=pointer]:
+                - /url: /MaksimZinovev?tab=repositories
+                - img [ref=e72]
+                - generic [ref=e74]: Repositories
+                - generic [ref=e75]:
+                  - generic [ref=e76]: "59"
+                  - generic [ref=e77]: (59)
+            - listitem [ref=e78]:
+              - link "Projects" [ref=e79] [cursor=pointer]:
+                - /url: /MaksimZinovev?tab=projects
+                - img [ref=e81]
+                - generic [ref=e83]: Projects
+            - listitem [ref=e84]:
+              - link "Packages" [ref=e85] [cursor=pointer]:
+                - /url: /MaksimZinovev?tab=packages
+                - img [ref=e87]
+                - generic [ref=e89]: Packages
+            - listitem [ref=e90]:
+              - link "Stars (1.6k)" [ref=e91] [cursor=pointer]:
+                - /url: /MaksimZinovev?tab=stars
+                - img [ref=e93]
+                - generic [ref=e95]: Stars
+                - generic [ref=e96]:
+                  - generic [ref=e97]: 1.6k
+                  - generic [ref=e98]: (1.6k)
+    - main [ref=e101]:
+      - generic [ref=e103]:
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - link "Change your avatar" [ref=e110] [cursor=pointer]:
+                - /url: https://github.com/account
+              - button "💭 broken, broken,..., it works! 😀" [ref=e115] [cursor=pointer]:
+                - generic [ref=e118]:
+                  - generic [ref=e121]: 💭
+                  - generic [ref=e122]: broken, broken,..., it works! 😀
+            - heading "Maksim Zinovev MaksimZinovev" [level=1] [ref=e124]:
+              - generic [ref=e125]: Maksim Zinovev
+              - generic [ref=e126]: MaksimZinovev
+          - generic [ref=e128]:
+            - generic [ref=e130]: If you’re not embarrassed by the first version of your product, you’ve launched too late.
+            - button "Edit profile" [ref=e132] [cursor=pointer]
+            - generic [ref=e134]:
+              - link "25 followers" [ref=e135] [cursor=pointer]:
+                - /url: https://github.com/MaksimZinovev?tab=followers
+                - img [ref=e136]
+                - text: 25 followers
+              - text: ·
+              - link "52 following" [ref=e138] [cursor=pointer]:
+                - /url: https://github.com/MaksimZinovev?tab=following
+            - list [ref=e139]:
+              - 'listitem "Home location: Sydney, Australia" [ref=e140]':
+                - img [ref=e141]
+                - generic [ref=e143]: Sydney, Australia
+              - listitem [ref=e144]:
+                - img [ref=e145]
+                - link "clickworks.me" [ref=e147] [cursor=pointer]:
+                  - /url: http://clickworks.me
+              - listitem [ref=e148]:
+                - img "X" [ref=e149]
+                - link "@Maxfaber_om" [ref=e151] [cursor=pointer]:
+                  - /url: https://twitter.com/Maxfaber_om
+          - generic [ref=e152]:
+            - heading "Achievements" [level=2] [ref=e153]:
+              - link "Achievements" [ref=e154] [cursor=pointer]:
+                - /url: /MaksimZinovev?tab=achievements
+            - generic [ref=e155]:
+              - 'link "Achievement: YOLO" [ref=e156] [cursor=pointer]':
+                - /url: /MaksimZinovev?achievement=yolo&tab=achievements
+                - 'img "Achievement: YOLO" [ref=e157]'
+              - 'link "Achievement: Pair Extraordinaire" [ref=e158] [cursor=pointer]':
+                - /url: /MaksimZinovev?achievement=pair-extraordinaire&tab=achievements
+                - 'img "Achievement: Pair Extraordinaire" [ref=e159]'
+              - 'link "Achievement: Pull Shark" [ref=e160] [cursor=pointer]':
+                - /url: /MaksimZinovev?achievement=pull-shark&tab=achievements
+                - 'img "Achievement: Pull Shark" [ref=e161]'
+              - 'link "Achievement: Quickdraw" [ref=e162] [cursor=pointer]':
+                - /url: /MaksimZinovev?achievement=quickdraw&tab=achievements
+                - 'img "Achievement: Quickdraw" [ref=e163]'
+          - generic [ref=e164]:
+            - heading "Organizations" [level=2] [ref=e165]
+            - link "risk-first" [ref=e166] [cursor=pointer]:
+              - /url: /risk-first
+              - img "@risk-first" [ref=e167]
+            - link "Intellihub-ANZ" [ref=e168] [cursor=pointer]:
+              - /url: /Intellihub-ANZ
+              - img "@Intellihub-ANZ" [ref=e169]
+        - generic [ref=e172]:
+          - link "Stars" [ref=e173] [cursor=pointer]:
+            - /url: /MaksimZinovev?tab=stars
+            - img [ref=e174]
+            - text: Stars
+          - generic [ref=e176]:
+            - generic [ref=e177]:
+              - heading "Security" [level=1] [ref=e178]
+              - button "Edit list" [ref=e180] [cursor=pointer]:
+                - generic [ref=e182]: Edit list
+            - generic [ref=e183]: Security
+            - generic [ref=e184]:
+              - img "Repositories in this list" [ref=e185]
+              - text: 8 repositories
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - heading "spotbugs / sonar-findbugs" [level=2] [ref=e190]:
+                - link "spotbugs / sonar-findbugs" [ref=e191] [cursor=pointer]:
+                  - /url: /spotbugs/sonar-findbugs
+              - generic [ref=e193]:
+                - generic [ref=e194]:
+                  - button "Starred, click to unstar this repository" [ref=e196] [cursor=pointer]:
+                    - img [ref=e197]
+                    - text: Starred
+                  - group [ref=e199]:
+                    - button "Add this repository to a list" [ref=e200] [cursor=pointer]:
+                      - img [ref=e201]
+                - button "New tag" [ref=e203] [cursor=pointer]:
+                  - img [ref=e204]
+                  - text: New tag
+              - paragraph [ref=e208]: SpotBugs plugin for SonarQube
+              - generic [ref=e209]:
+                - generic [ref=e210]: Java
+                - link "star 380" [ref=e212] [cursor=pointer]:
+                  - /url: /spotbugs/sonar-findbugs/stargazers
+                  - img "star" [ref=e213]
+                  - text: "380"
+                - link "fork 143" [ref=e215] [cursor=pointer]:
+                  - /url: /spotbugs/sonar-findbugs/forks
+                  - img "fork" [ref=e216]
+                  - text: "143"
+                - text: Updated Feb 22, 20264 hours ago
+              - generic [ref=e218]:
+                - img [ref=e219]
+                - paragraph [ref=e222]: 0 tags
+                - link "Add existing tag" [ref=e223] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e224]
+                  - text: Add existing tag
+            - generic [ref=e226]:
+              - heading "ossf / scorecard" [level=2] [ref=e228]:
+                - link "ossf / scorecard" [ref=e229] [cursor=pointer]:
+                  - /url: /ossf/scorecard
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - button "Starred, click to unstar this repository" [ref=e234] [cursor=pointer]:
+                    - img [ref=e235]
+                    - text: Starred
+                  - group [ref=e237]:
+                    - button "Add this repository to a list" [ref=e238] [cursor=pointer]:
+                      - img [ref=e239]
+                - button "New tag" [ref=e241] [cursor=pointer]:
+                  - img [ref=e242]
+                  - text: New tag
+              - paragraph [ref=e246]: OpenSSF Scorecard - Security health metrics for Open Source
+              - generic [ref=e247]:
+                - generic [ref=e248]: Go
+                - link "star 5,272" [ref=e250] [cursor=pointer]:
+                  - /url: /ossf/scorecard/stargazers
+                  - img "star" [ref=e251]
+                  - text: 5,272
+                - link "fork 605" [ref=e253] [cursor=pointer]:
+                  - /url: /ossf/scorecard/forks
+                  - img "fork" [ref=e254]
+                  - text: "605"
+                - text: Updated Feb 16, 2026last week
+              - generic [ref=e256]:
+                - img [ref=e257]
+                - paragraph [ref=e260]: 0 tags
+                - link "Add existing tag" [ref=e261] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e262]
+                  - text: Add existing tag
+            - generic [ref=e264]:
+              - heading "naveensrinivasan / guac-ai-mole" [level=2] [ref=e266]:
+                - link "naveensrinivasan / guac-ai-mole" [ref=e267] [cursor=pointer]:
+                  - /url: /naveensrinivasan/guac-ai-mole
+              - generic [ref=e269]:
+                - generic [ref=e270]:
+                  - button "Starred, click to unstar this repository" [ref=e272] [cursor=pointer]:
+                    - img [ref=e273]
+                    - text: Starred
+                  - group [ref=e275]:
+                    - button "Add this repository to a list" [ref=e276] [cursor=pointer]:
+                      - img [ref=e277]
+                - button "New tag" [ref=e279] [cursor=pointer]:
+                  - img [ref=e280]
+                  - text: New tag
+              - paragraph [ref=e284]: 🥑 Inspect and understand an organization's software supply chain that enables stakeholders to make actionable decisions about software supply chain security
+              - generic [ref=e285]:
+                - generic [ref=e286]: Python
+                - link "star 1" [ref=e288] [cursor=pointer]:
+                  - /url: /naveensrinivasan/guac-ai-mole/stargazers
+                  - img "star" [ref=e289]
+                  - text: "1"
+                - text: Updated Apr 16, 2024on Apr 16, 2024
+              - generic [ref=e291]:
+                - img [ref=e292]
+                - paragraph [ref=e295]: 0 tags
+                - link "Add existing tag" [ref=e296] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e297]
+                  - text: Add existing tag
+            - generic [ref=e299]:
+              - heading "ossf-cve-benchmark / ossf-cve-benchmark" [level=2] [ref=e301]:
+                - link "ossf-cve-benchmark / ossf-cve-benchmark" [ref=e302] [cursor=pointer]:
+                  - /url: /ossf-cve-benchmark/ossf-cve-benchmark
+              - generic [ref=e304]:
+                - generic [ref=e305]:
+                  - button "Starred, click to unstar this repository" [ref=e307] [cursor=pointer]:
+                    - img [ref=e308]
+                    - text: Starred
+                  - group [ref=e310]:
+                    - button "Add this repository to a list" [ref=e311] [cursor=pointer]:
+                      - img [ref=e312]
+                - button "New tag" [ref=e314] [cursor=pointer]:
+                  - img [ref=e315]
+                  - text: New tag
+              - paragraph [ref=e319]: The OpenSSF CVE Benchmark consists of code and metadata for over 200 real life CVEs, as well as tooling to analyze the vulnerable codebases using a variety of static analysis security testing (SAST…
+              - generic [ref=e320]:
+                - generic [ref=e321]: TypeScript
+                - link "star 159" [ref=e323] [cursor=pointer]:
+                  - /url: /ossf-cve-benchmark/ossf-cve-benchmark/stargazers
+                  - img "star" [ref=e324]
+                  - text: "159"
+                - link "fork 44" [ref=e326] [cursor=pointer]:
+                  - /url: /ossf-cve-benchmark/ossf-cve-benchmark/forks
+                  - img "fork" [ref=e327]
+                  - text: "44"
+                - text: Updated Mar 12, 2024on Mar 12, 2024
+              - generic [ref=e329]:
+                - img [ref=e330]
+                - paragraph [ref=e333]: 0 tags
+                - link "Add existing tag" [ref=e334] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e335]
+                  - text: Add existing tag
+            - generic [ref=e337]:
+              - heading "google / osv-scanner" [level=2] [ref=e339]:
+                - link "google / osv-scanner" [ref=e340] [cursor=pointer]:
+                  - /url: /google/osv-scanner
+              - generic [ref=e342]:
+                - generic [ref=e343]:
+                  - button "Starred, click to unstar this repository" [ref=e345] [cursor=pointer]:
+                    - img [ref=e346]
+                    - text: Starred
+                  - group [ref=e348]:
+                    - button "Add this repository to a list" [ref=e349] [cursor=pointer]:
+                      - img [ref=e350]
+                - button "New tag" [ref=e352] [cursor=pointer]:
+                  - img [ref=e353]
+                  - text: New tag
+              - paragraph [ref=e357]: Vulnerability scanner written in Go which uses the data provided by https://osv.dev
+              - generic [ref=e358]:
+                - generic [ref=e359]: Go
+                - link "star 8,472" [ref=e361] [cursor=pointer]:
+                  - /url: /google/osv-scanner/stargazers
+                  - img "star" [ref=e362]
+                  - text: 8,472
+                - link "fork 527" [ref=e364] [cursor=pointer]:
+                  - /url: /google/osv-scanner/forks
+                  - img "fork" [ref=e365]
+                  - text: "527"
+                - text: Updated Feb 22, 20264 hours ago
+              - generic [ref=e367]:
+                - img [ref=e368]
+                - paragraph [ref=e371]: 0 tags
+                - link "Add existing tag" [ref=e372] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e373]
+                  - text: Add existing tag
+            - generic [ref=e375]:
+              - heading "anchore / grype" [level=2] [ref=e377]:
+                - link "anchore / grype" [ref=e378] [cursor=pointer]:
+                  - /url: /anchore/grype
+              - generic [ref=e380]:
+                - generic [ref=e381]:
+                  - button "Starred, click to unstar this repository" [ref=e383] [cursor=pointer]:
+                    - img [ref=e384]
+                    - text: Starred
+                  - group [ref=e386]:
+                    - button "Add this repository to a list" [ref=e387] [cursor=pointer]:
+                      - img [ref=e388]
+                - button "New tag" [ref=e390] [cursor=pointer]:
+                  - img [ref=e391]
+                  - text: New tag
+              - paragraph [ref=e395]: A vulnerability scanner for container images and filesystems
+              - generic [ref=e396]:
+                - generic [ref=e397]: Go
+                - link "star 11,591" [ref=e399] [cursor=pointer]:
+                  - /url: /anchore/grype/stargazers
+                  - img "star" [ref=e400]
+                  - text: 11,591
+                - link "fork 744" [ref=e402] [cursor=pointer]:
+                  - /url: /anchore/grype/forks
+                  - img "fork" [ref=e403]
+                  - text: "744"
+                - text: Updated Feb 21, 202617 hours ago
+              - generic [ref=e405]:
+                - img [ref=e406]
+                - paragraph [ref=e409]: 0 tags
+                - link "Add existing tag" [ref=e410] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e411]
+                  - text: Add existing tag
+            - generic [ref=e413]:
+              - heading "microsoft / presidio" [level=2] [ref=e415]:
+                - link "microsoft / presidio" [ref=e416] [cursor=pointer]:
+                  - /url: /microsoft/presidio
+              - generic [ref=e418]:
+                - generic [ref=e419]:
+                  - button "Starred, click to unstar this repository" [ref=e421] [cursor=pointer]:
+                    - img [ref=e422]
+                    - text: Starred
+                  - group [ref=e424]:
+                    - button "Add this repository to a list" [ref=e425] [cursor=pointer]:
+                      - img [ref=e426]
+                - button "New tag" [ref=e428] [cursor=pointer]:
+                  - img [ref=e429]
+                  - text: New tag
+              - paragraph [ref=e433]: An open-source framework for detecting, redacting, masking, and anonymizing sensitive data (PII) across text, images, and structured data. Supports NLP, pattern matching, and customizable pipelines.
+              - generic [ref=e434]:
+                - generic [ref=e435]: Python
+                - link "star 7,008" [ref=e437] [cursor=pointer]:
+                  - /url: /microsoft/presidio/stargazers
+                  - img "star" [ref=e438]
+                  - text: 7,008
+                - link "fork 943" [ref=e440] [cursor=pointer]:
+                  - /url: /microsoft/presidio/forks
+                  - img "fork" [ref=e441]
+                  - text: "943"
+                - text: Updated Feb 18, 20264 days ago
+              - generic [ref=e443]:
+                - img [ref=e444]
+                - paragraph [ref=e447]: 0 tags
+                - link "Add existing tag" [ref=e448] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e449]
+                  - text: Add existing tag
+            - generic [ref=e451]:
+              - heading "EasyTier / EasyTier" [level=2] [ref=e453]:
+                - link "EasyTier / EasyTier" [ref=e454] [cursor=pointer]:
+                  - /url: /EasyTier/EasyTier
+              - generic [ref=e456]:
+                - generic [ref=e457]:
+                  - button "Starred, click to unstar this repository" [ref=e459] [cursor=pointer]:
+                    - img [ref=e460]
+                    - text: Starred
+                  - group [ref=e462]:
+                    - button "Add this repository to a list" [ref=e463] [cursor=pointer]:
+                      - img [ref=e464]
+                - button "New tag" [ref=e466] [cursor=pointer]:
+                  - img [ref=e467]
+                  - text: New tag
+              - paragraph [ref=e471]: A simple, decentralized mesh VPN with WireGuard support.
+              - generic [ref=e472]:
+                - generic [ref=e473]: Rust
+                - link "star 10,084" [ref=e475] [cursor=pointer]:
+                  - /url: /EasyTier/EasyTier/stargazers
+                  - img "star" [ref=e476]
+                  - text: 10,084
+                - link "fork 953" [ref=e478] [cursor=pointer]:
+                  - /url: /EasyTier/EasyTier/forks
+                  - img "fork" [ref=e479]
+                  - text: "953"
+                - text: Updated Feb 22, 202610 hours ago
+              - generic [ref=e481]:
+                - img [ref=e482]
+                - paragraph [ref=e485]: 0 tags
+                - link "Add existing tag" [ref=e486] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e487]
+                  - text: Add existing tag
+    - contentinfo [ref=e489]:
+      - heading "Footer" [level=2] [ref=e490]
+      - generic [ref=e491]:
+        - generic [ref=e492]:
+          - link "GitHub Homepage" [ref=e493] [cursor=pointer]:
+            - /url: https://github.com
+            - img [ref=e494]
+          - generic [ref=e496]: © 2026 GitHub, Inc.
+        - navigation "Footer" [ref=e497]:
+          - heading "Footer navigation" [level=3] [ref=e498]
+          - list "Footer navigation" [ref=e499]:
+            - listitem [ref=e500]:
+              - link "Terms" [ref=e501] [cursor=pointer]:
+                - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+            - listitem [ref=e502]:
+              - link "Privacy" [ref=e503] [cursor=pointer]:
+                - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+            - listitem [ref=e504]:
+              - link "Security" [ref=e505] [cursor=pointer]:
+                - /url: https://github.com/security
+            - listitem [ref=e506]:
+              - link "Status" [ref=e507] [cursor=pointer]:
+                - /url: https://www.githubstatus.com/
+            - listitem [ref=e508]:
+              - link "Community" [ref=e509] [cursor=pointer]:
+                - /url: https://github.community/
+            - listitem [ref=e510]:
+              - link "Docs" [ref=e511] [cursor=pointer]:
+                - /url: https://docs.github.com/
+            - listitem [ref=e512]:
+              - link "Contact" [ref=e513] [cursor=pointer]:
+                - /url: https://support.github.com?tags=dotcom-footer
+            - listitem [ref=e514]:
+              - button "Manage cookies" [ref=e516] [cursor=pointer]
+            - listitem [ref=e517]:
+              - button "Do not share my personal information" [ref=e519] [cursor=pointer]
+  - generic:
+    - generic:
+      - img
+  - generic:
+    - paragraph: New tag for
+    - generic:
+      - textbox "Type the tag name"
+      - button "Add tag"
+      - paragraph

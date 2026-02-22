@@ -29,3 +29,4 @@ build
 /src/assets/js/keys.js
 .env
 .claude/settings.local.json
+!.claude/rules/**
