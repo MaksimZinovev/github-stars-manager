@@ -1,5 +1,17 @@
 # Bulk Tagging Workflow
 
+Parallel agent workflow for tagging 50+ GitHub starred repos efficiently.
+
+**How it works:** Lead agent fetches repo data and partitions by tag type, then spawns 3 worker agents that execute `bulkTag()` in parallel.
+
+## Related Rules
+
+| File | Purpose |
+|------|---------|
+| [console-api-workflow.md](console-api-workflow.md) | Setup, debugAPI reference, troubleshooting |
+| [tagging-convention.md](tagging-convention.md) | Tag decision tree, domain tags, examples |
+| [adding-tags-workflow.md](adding-tags-workflow.md) | Manual single-repo tagging via UI |
+
 ## Scripts
 
 | Run | Script | Output |
