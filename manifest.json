@@ -16,7 +16,8 @@
     "bookmarks",
     "tabs",
     "activeTab",
-    "storage"
+    "storage",
+    "unlimitedStorage"
   ],
   "background": {
     "service_worker": "dist/background.js"

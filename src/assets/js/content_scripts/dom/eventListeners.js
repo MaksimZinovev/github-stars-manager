@@ -22,6 +22,7 @@ import {
   getTagsAndRelatedRepos,
   tagLinkOnTagPageShowRepos,
 } from './uiTagPage';
+import { showSettingsModal } from './uiSettingsModal';
 
 /**
  * Add click event listeners in DOM elements
@@ -48,6 +49,8 @@ export function clickEventListener() {
       isBtExportJsonChild: t.closest('.ghstarsmngr-export-bt-json'),
       isTagLinkOnTagPage: t.classList.contains('ghstarsmngr-sidebar-tag-list-link'),
       isTagLinkOnTagPageChild: t.closest('.ghstarsmngr-sidebar-tag-list-link'),
+      isSettingsBt: t.classList.contains('ghstarmngr-settings-bt'),
+      isSettingsBtChild: t.closest('.ghstarmngr-settings-bt'),
     };
 
     switch (true) {
@@ -153,6 +156,11 @@ export function clickEventListener() {
         eTarget.isTagLinkOnTagPage ? t.classList.add('active-tag-link') : t.closest('.ghstarsmngr-sidebar-tag-list-link').classList.add('active-tag-link'); // eslint-disable-line
         let target = eTarget.isTagLinkOnTagPage ? t : t.closest('.ghstarsmngr-sidebar-tag-list-link'); // eslint-disable-line
         tagLinkOnTagPageShowRepos(target);
+      }
+        break;
+      case (eTarget.isSettingsBt || eTarget.isSettingsBtChild !== null): {
+        e.preventDefault();
+        showSettingsModal();
       }
         break;
     }
