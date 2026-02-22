@@ -1,5 +1,11 @@
 # Adding Tags Workflow
 
+## Prerequisites
+1. **Build extension**: `npm run start`
+2. **Load in Chrome**: `chrome://extensions/` → Developer mode → Load unpacked → select `dist/`
+3. **Login to GitHub**: Authenticate in browser
+4. **Paste PAT**: Extension will prompt for GitHub Personal Access Token
+
 ## Quick
 ```bash
 playwright-cli session-stop-all
@@ -19,5 +25,6 @@ playwright-cli click <ref> && playwright-cli type "<tag>" && playwright-cli clic
 - Add tag: `button "Add tag" [ref=eXXX]`
 
 ## Tips
+- Always snapshot after actions (refs change when DOM updates)
 - Always `session-stop-all` first for headed mode
 - Max 2 tags per repo (see tagging-convention.md)
