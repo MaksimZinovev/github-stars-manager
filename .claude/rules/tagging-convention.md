@@ -34,6 +34,11 @@
 │  ├─ Games                     → games
 │  └─ Fonts/Typography          → fonts
 │
+├─ E-commerce
+│  ├─ Shop/store templates      → ecommerce
+│  ├─ Payment integrations      → ecommerce
+│  └─ Cart/checkout tools       → ecommerce
+│
 ├─ Design & Graphics
 │  ├─ Design tools (Figma-like) → design
 │  ├─ Graphic editors           → design
@@ -116,6 +121,7 @@
 | `docs` | ~4 | Documentation tools |
 | `video` | ~4 | Video tools |
 | `games` | ~3 | Games |
+| `ecommerce` | ~ | Shop templates, payment, cart tools |
 | `data` | ~2 | Data tools |
 | `viz` | ~ | Visualization, charts, diagrams |
 | `design` | ~ | Design tools, graphic editors, UI kits |

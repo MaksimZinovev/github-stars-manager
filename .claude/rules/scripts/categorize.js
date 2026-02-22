@@ -88,6 +88,10 @@ async () => {
     } else if (/game|gaming|unity|unreal/.test(combined)) {
       tags.push("games");
 
+    // E-commerce
+    } else if (/shop|store|ecommerce|e-commerce|cart|checkout|payment|stripe|shopify/.test(combined)) {
+      tags.push("ecommerce");
+
     // Productivity & Personal
     } else if (/obsidian|note-taking|knowledge-base/.test(combined)) {
       tags.push("obsidian");
