@@ -44,7 +44,14 @@
 │  ├─ Productivity tools        → productivity
 │  ├─ Personal website/portfolios→ website
 │  ├─ Obsidian plugins/themes   → obsidian
-│  └─ Mac-specific tools        → mac
+│  ├─ Mac-specific tools        → mac
+│  ├─ Windows-specific tools    → windows
+│  └─ CLI tools                 → cli
+│
+├─ Self-Hosted
+│  ├─ Self-hosted tools         → selfhosted
+│  ├─ Local-first apps          → selfhosted
+│  └─ On-premise solutions      → selfhosted
 │
 ├─ Resources & Learning
 │  ├─ Tutorials/courses/books   → learning
@@ -74,6 +81,7 @@
 ├─ Product-specific    → sonarqube, kubernetes, docker
 ├─ Quality indicator   → essential, reference
 ├─ Platform-specific   → mac, obsidian
+├─ Deployment model    → selfhosted
 └─ Skip if primary tag is enough
 ```
 
@@ -105,6 +113,10 @@
 | `design` | ~ | Design tools, graphic editors, UI kits |
 | `icons` | ~ | Icon libraries, emoji libraries |
 | `obsidian` | ~3 | Obsidian plugins |
+| `mac` | ~ | Mac-specific tools |
+| `windows` | ~ | Windows-specific tools |
+| `cli` | ~ | Command-line interface tools |
+| `selfhosted` | ~ | Self-hosted tools, local-first apps |
 
 ## Examples
 
@@ -123,6 +135,9 @@
 | lucide | icons | | Icon toolkit |
 | twemoji | icons | | Emoji library |
 | graphite | design | | 2D graphic design suite |
+| immich-app / immich | productivity | selfhosted | Self-hosted photo management |
+| n8n-io / n8n | automation | selfhosted | Workflow automation + self-hosted |
+| awesome-selfhosted / awesome-selfhosted | learning | selfhosted | Self-hosted list + learning |
 
 ## Anti-patterns
 

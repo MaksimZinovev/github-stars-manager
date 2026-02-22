@@ -5,6 +5,11 @@ import { initStorage, getAccessTokenFromStorage } from './storageSync/initStorag
 import { StoredGenericMngr } from './storageSync/StoredGenericMngr';
 import { StoredTagsMngr } from './storageSync/StoredTagsMngr';
 import { addHeaderTagMenu, updateSidebarInTagPage } from './dom/uiTagPage';
+
+const DEBUG = localStorage.getItem('DEBUG') === '1';
+DEBUG && console.log('[main.js] Content script starting...');
+
+import './debugAPI'; // Side effect: registers window.debugAPI
 import {
   insertBtCreateTag,
   insertFooterTags,
