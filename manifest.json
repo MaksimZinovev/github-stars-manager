@@ -17,7 +17,11 @@
     "tabs",
     "activeTab",
     "storage",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://github.com/*"
   ],
   "background": {
     "service_worker": "dist/background.js"

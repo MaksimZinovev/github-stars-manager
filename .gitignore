@@ -28,5 +28,8 @@ build
 /keyrings/live/secring.gpg
 /src/assets/js/keys.js
 .env
-.claude/settings.local.json
+*.local.json
 !.claude/rules/**
+
+.playwright-cli/**
+.local
