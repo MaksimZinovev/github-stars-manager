@@ -1,5 +1,7 @@
 # Adding Tags Workflow
 
+> ✅ **Tested 2026-02-22** - Workflow verified working
+
 ## Steps
 
 1. **Build extension**: `npm run start`
@@ -9,23 +11,37 @@
 5. **Optional. Login**: Ask user to log into github (when not authenticated)
 6. **Navigate to**: `playwright-cli open "https://github.com/MaksimZinovev?tab=stars" --headed`
 7. **Optional. Enter PAT**: Extension prompts for GitHub Personal Access Token. Ask user to paste PAT
-8. **Get refs**: `playwright-cli snapshot` → find `button "New tag" [ref=eXXX]` in `.playwright-cli/page-*.yml`
+8. **Get refs**: `playwright-cli snapshot` → find `button "New tag" [ref=eXXX]`
 9. **Open modal**: `playwright-cli click <new-tag-ref>`
 10. **Enter tag**: `playwright-cli type "<tag>"`
 11. **Submit**: `playwright-cli press Enter`
-12. **Wait for sync**: Wait 1-2 seconds for storage to sync
-13. **Verify tag TEXT**: `playwright-cli snapshot` → check for `text: <tag>` in snapshot (NOT just "N tags" count)
+12. **Wait**: `sleep 2` — **CRITICAL: prevents race condition**
+13. **Verify**: `playwright-cli snapshot` → grep for `text: <tag>` — must see tag **text**, not just count
 
-## Tips
-- Always snapshot after actions (refs change when DOM updates)
-- Verify tag **text** is visible, not just tag count
-- Wait 1-2 seconds between tags on same repo (storage sync delay)
-- Max 2 tags per repo (see tagging-convention.md)
-- If tag text missing: refresh page with `playwright-cli reload` and re-check
+## Verification Example
 
-## Common Issues
+```bash
+# After adding tag "viz" to mermaid-rs-renderer:
+grep -A10 "mermaid-rs-renderer" .playwright-cli/page-*.yml | grep "text: viz"
+# Output should show: - text: viz
+```
+
+## Critical Rules
+
+| Rule | Why |
+|------|-----|
+| Always `sleep 2` after submit | Storage sync race condition causes missing tag text |
+| Verify tag **text**, not count | Count can show "1 tag" without text being visible |
+| Fresh snapshot before click | Refs change when DOM updates |
+
+## Troubleshooting
+
 | Issue | Fix |
 |-------|-----|
-| Tag count shows but no text | Reload page, storage sync race condition |
+| Tag count shows but no text | `sleep 2` was skipped — reload and re-add |
+| Ref not found error | Take fresh snapshot, refs expire quickly |
 | Modal won't close | Press Escape, retry |
 | Add tag button has no ref | Press Enter to submit |
+
+## Related
+- Tag naming: `.claude/rules/tagging-convention.md` (max 2 tags per repo)
